@@ -200,8 +200,11 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
+      - name: Build
+        run: dotnet build src/GoSMSCore/GoSMSCore.csproj -c Release --no-restore
+
       - name: Pack
-        run: dotnet pack src/GoSMSCore/GoSMSCore.csproj -c Release --no-restore -o ./nupkg
+        run: dotnet pack src/GoSMSCore/GoSMSCore.csproj -c Release --no-build -o ./nupkg
 
       - name: Publish to NuGet.org
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
