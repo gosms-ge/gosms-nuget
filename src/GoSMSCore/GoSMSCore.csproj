@@ -14,7 +14,7 @@
     <PackageTags>sms sms-api gosms.ge sms-sdk sms-gateway otp</PackageTags>
     <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/gosms-ge/GoSMSCore-pkg</RepositoryUrl>
+    <RepositoryUrl>https://github.com/gosms-ge/gosms-nuget</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

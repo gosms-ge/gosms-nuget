@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5aa8bb81-9522-496c-a2f1-5ca8330798ce" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/GoSMSCore.sln" beforeDir="false" afterPath="$PROJECT_DIR$/GoSMSCore.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/ISmsSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/SmsServiceUrls.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/SmsSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/SmsSettingsOption.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/DependencyInjection/InjectIServiceCollectionExtension.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/MessageStatus.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/OtpEventArgs.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/SmsDeliveryEventArgs.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/SmsSendEventArgs.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Globals/PackageGlobals.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/GoSMSCore.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/GoSMSCore.csproj.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Helper/ObjectToJsonHelper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Helper/StringExtensionMethodHelper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Responses/ISentResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Services/GoSmsService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/Services/ISmsService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoSMSCore/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +18,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
   "lastFilter": {
@@ -65,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/SenderCreateResponse.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/SmsSendResponse.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 0
 }]]></component>
@@ -100,16 +84,37 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1771785263444</updated>
-      <workItem from="1771785264903" duration="860000" />
+      <workItem from="1771785264903" duration="1305000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: rewrite SDK v6">
+      <option name="closed" value="true" />
+      <created>1771787796992</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1771787796992</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ci: add build step and update pack command in release workflow">
+      <option name="closed" value="true" />
+      <created>1771787950264</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1771787950264</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="feat: rewrite SDK v6" />
+    <MESSAGE value="ci: add build step and update pack command in release workflow" />
+    <option name="LAST_COMMIT_MESSAGE" value="ci: add build step and update pack command in release workflow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
