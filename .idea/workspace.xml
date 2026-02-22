@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5aa8bb81-9522-496c-a2f1-5ca8330798ce" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/GoSMSCore.sln" beforeDir="false" afterPath="$PROJECT_DIR$/GoSMSCore.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/ISmsSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/SmsServiceUrls.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/SmsSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Config/SmsSettingsOption.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/DependencyInjection/InjectIServiceCollectionExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/MessageStatus.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/OtpEventArgs.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/SmsDeliveryEventArgs.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/EventArgs/SmsSendEventArgs.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Globals/PackageGlobals.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/GoSMSCore.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/GoSMSCore.csproj.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Helper/ObjectToJsonHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Helper/StringExtensionMethodHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Responses/ISentResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Services/GoSmsService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/Services/ISmsService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoSMSCore/logo.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="74" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "levart"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:gosms-ge/gosms-nuget.git",
+    "accountId": "ef419885-e378-4a0b-85b1-1cd0fa7a1d97"
+  }
+}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Exceptions/GoSmsApiException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/GoSmsClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/GoSmsClientOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/GoSmsErrorCode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/IGoSmsClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/BalanceResponse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/BulkSmsResult.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/CheckStatusResponse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/GoSmsApiError.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/OtpSendResponse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/OtpVerifyResponse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/SendBulkSmsResponse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/SenderCreateResponse.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GoSMSCore/Models/SmsSendResponse.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="3A2KX6hfb6snShXRwrIbvMFZ9p4" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5aa8bb81-9522-496c-a2f1-5ca8330798ce" name="Changes" comment="" />
+      <created>1771785263444</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771785263444</updated>
+      <workItem from="1771785264903" duration="860000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
