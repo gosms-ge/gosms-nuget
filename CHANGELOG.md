@@ -1,3 +1,9 @@
+## [6.1.1](https://github.com/gosms-ge/gosms-nuget/compare/v6.1.0...v6.1.1) (2026-02-22)
+
+### Other Changes
+
+* add build step and update pack command in release workflow ([9e02213](https://github.com/gosms-ge/gosms-nuget/commit/9e02213e2a7aa5ee18d5ac140e30944258348a07))
+
 # Changelog
 
 ## [6.1.0](https://github.com/gosms-ge/gosms-nuget/compare/...v6.1.0) (2026-02-22)
