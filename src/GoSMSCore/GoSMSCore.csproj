@@ -6,9 +6,9 @@
     <Nullable>enable</Nullable>
     <Authors>GOSMS.GE</Authors>
     <Company>GoSMS</Company>
-    <Version>6.0.0</Version>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion>
-    <FileVersion>6.0.0.0</FileVersion>
+    <Version>6.1.0</Version>
+    <AssemblyVersion>6.1.0.0</AssemblyVersion>
+    <FileVersion>6.1.0.0</FileVersion>
     <Description>GoSMS.GE SDK for .NET — send SMS, bulk SMS, OTP, check balance and message status.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>sms sms-api gosms.ge sms-sdk sms-gateway otp</PackageTags>
