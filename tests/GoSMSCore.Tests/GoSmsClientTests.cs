@@ -39,16 +39,27 @@ public class GoSmsClientTests
         return new GoSmsClient(httpClient, options);
     }
 
-    private static HttpResponseMessage JsonResponse(object body, HttpStatusCode status = HttpStatusCode.OK)
+    private static HttpResponseMessage JsonResponse(
+        object body,
+        HttpStatusCode status = HttpStatusCode.OK,
+        Dictionary<string, string>? headers = null)
     {
         var json = JsonSerializer.Serialize(body, new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         });
-        return new HttpResponseMessage(status)
+        var response = new HttpResponseMessage(status)
         {
             Content = new StringContent(json, Encoding.UTF8, "application/json")
         };
+
+        if (headers != null)
+        {
+            foreach (var kvp in headers)
+                response.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+        }
+
+        return response;
     }
 
     #region SendAsync
@@ -464,6 +475,98 @@ public class GoSmsClientTests
         var body = await capturedRequest!.Content!.ReadAsStringAsync();
         using var doc = JsonDocument.Parse(body);
         Assert.False(doc.RootElement.TryGetProperty("noSmsNumber", out _));
+    }
+
+    #endregion
+
+    #region Rate Limit Headers
+
+    [Fact]
+    public async Task SendOtpAsync_WithRateLimitHeaders_ReturnsRateLimitInfo()
+    {
+        var response = JsonResponse(
+            new { success = true, hash = "abc123", balance = 99, to = "995555123456", sendAt = "", encode = "default", segment = 1, smsCharacters = 6 },
+            headers: new Dictionary<string, string>
+            {
+                ["X-RateLimit-Limit"] = "10",
+                ["X-RateLimit-Remaining"] = "7"
+            });
+        var client = CreateClient(response);
+
+        var result = await client.SendOtpAsync("995555123456");
+
+        Assert.NotNull(result.RateLimitInfo);
+        Assert.Equal(10, result.RateLimitInfo!.Limit);
+        Assert.Equal(7, result.RateLimitInfo.Remaining);
+        Assert.Null(result.RateLimitInfo.RetryAfter);
+    }
+
+    [Fact]
+    public async Task SendOtpAsync_WithoutRateLimitHeaders_ReturnsNullRateLimitInfo()
+    {
+        var client = CreateClient(JsonResponse(new
+        {
+            success = true,
+            hash = "abc123",
+            balance = 99,
+            to = "995555123456",
+            sendAt = "",
+            encode = "default",
+            segment = 1,
+            smsCharacters = 6
+        }));
+
+        var result = await client.SendOtpAsync("995555123456");
+
+        Assert.Null(result.RateLimitInfo);
+    }
+
+    [Fact]
+    public async Task VerifyOtpAsync_WithRateLimitHeaders_ReturnsRateLimitInfo()
+    {
+        var response = JsonResponse(
+            new { success = true, verify = true },
+            headers: new Dictionary<string, string>
+            {
+                ["X-RateLimit-Limit"] = "5",
+                ["X-RateLimit-Remaining"] = "3",
+                ["Retry-After"] = "60"
+            });
+        var client = CreateClient(response);
+
+        var result = await client.VerifyOtpAsync("995555123456", "hash", "1234");
+
+        Assert.NotNull(result.RateLimitInfo);
+        Assert.Equal(5, result.RateLimitInfo!.Limit);
+        Assert.Equal(3, result.RateLimitInfo.Remaining);
+        Assert.Equal(60, result.RateLimitInfo.RetryAfter);
+    }
+
+    [Fact]
+    public async Task ApiError_WithRetryAfter_SetsRetryAfterOnException()
+    {
+        var response = JsonResponse(
+            new { errorCode = 109, message = "Too many requests" },
+            HttpStatusCode.TooManyRequests,
+            new Dictionary<string, string> { ["Retry-After"] = "120" });
+        var client = CreateClient(response);
+
+        var ex = await Assert.ThrowsAsync<GoSmsApiException>(() => client.SendOtpAsync("995555123456"));
+        Assert.Equal(109, ex.ErrorCode);
+        Assert.Equal(120, ex.RetryAfter);
+    }
+
+    [Fact]
+    public async Task ApiError_WithoutRetryAfter_RetryAfterIsNull()
+    {
+        var response = JsonResponse(
+            new { errorCode = 100, message = "Invalid API key" },
+            HttpStatusCode.Unauthorized);
+        var client = CreateClient(response);
+
+        var ex = await Assert.ThrowsAsync<GoSmsApiException>(() => client.CheckBalanceAsync());
+        Assert.Equal(100, ex.ErrorCode);
+        Assert.Null(ex.RetryAfter);
     }
 
     #endregion

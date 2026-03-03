@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -41,7 +42,8 @@ public class GoSmsClient : IGoSmsClient
             ["urgent"] = urgent
         };
 
-        return await PostAsync<SmsSendResponse>("/sendsms", payload, ct);
+        var (result, _) = await PostAsync<SmsSendResponse>("/sendsms", payload, ct);
+        return result;
     }
 
     public async Task<SendBulkSmsResponse> SendBulkAsync(string[] phoneNumbers, string text, bool urgent = false, string? noSmsNumber = null, CancellationToken ct = default)
@@ -64,7 +66,8 @@ public class GoSmsClient : IGoSmsClient
         if (noSmsNumber != null)
             payload["noSmsNumber"] = noSmsNumber;
 
-        return await PostAsync<SendBulkSmsResponse>("/sendbulk", payload, ct);
+        var (result, _) = await PostAsync<SendBulkSmsResponse>("/sendbulk", payload, ct);
+        return result;
     }
 
     public async Task<OtpSendResponse> SendOtpAsync(string phoneNumber, CancellationToken ct = default)
@@ -77,7 +80,9 @@ public class GoSmsClient : IGoSmsClient
             ["phone"] = phoneNumber
         };
 
-        return await PostAsync<OtpSendResponse>("/otp/send", payload, ct);
+        var (result, headers) = await PostAsync<OtpSendResponse>("/otp/send", payload, ct);
+        result.RateLimitInfo = RateLimitInfo.FromHeaders(headers);
+        return result;
     }
 
     public async Task<OtpVerifyResponse> VerifyOtpAsync(string phoneNumber, string hash, string code, CancellationToken ct = default)
@@ -94,7 +99,9 @@ public class GoSmsClient : IGoSmsClient
             ["code"] = code
         };
 
-        return await PostAsync<OtpVerifyResponse>("/otp/verify", payload, ct);
+        var (result, headers) = await PostAsync<OtpVerifyResponse>("/otp/verify", payload, ct);
+        result.RateLimitInfo = RateLimitInfo.FromHeaders(headers);
+        return result;
     }
 
     public async Task<CheckStatusResponse> CheckStatusAsync(int messageId, CancellationToken ct = default)
@@ -105,7 +112,8 @@ public class GoSmsClient : IGoSmsClient
             ["messageId"] = messageId
         };
 
-        return await PostAsync<CheckStatusResponse>("/checksms", payload, ct);
+        var (result, _) = await PostAsync<CheckStatusResponse>("/checksms", payload, ct);
+        return result;
     }
 
     public async Task<BalanceResponse> CheckBalanceAsync(CancellationToken ct = default)
@@ -115,7 +123,8 @@ public class GoSmsClient : IGoSmsClient
             ["api_key"] = _options.ApiKey
         };
 
-        return await PostAsync<BalanceResponse>("/sms-balance", payload, ct);
+        var (result, _) = await PostAsync<BalanceResponse>("/sms-balance", payload, ct);
+        return result;
     }
 
     public async Task<SenderCreateResponse> CreateSenderAsync(string name, CancellationToken ct = default)
@@ -128,12 +137,14 @@ public class GoSmsClient : IGoSmsClient
             ["name"] = name
         };
 
-        return await PostAsync<SenderCreateResponse>("/sender", payload, ct);
+        var (result, _) = await PostAsync<SenderCreateResponse>("/sender", payload, ct);
+        return result;
     }
 
-    private async Task<TResponse> PostAsync<TResponse>(string path, Dictionary<string, object> payload, CancellationToken ct)
+    private async Task<(TResponse, System.Net.Http.Headers.HttpResponseHeaders)> PostAsync<TResponse>(string path, Dictionary<string, object> payload, CancellationToken ct)
     {
         using var response = await _httpClient.PostAsJsonAsync(path, payload, JsonOptions, ct);
+        var headers = response.Headers;
 
 #if NETSTANDARD2_0
         var content = await response.Content.ReadAsStringAsync();
@@ -155,7 +166,8 @@ public class GoSmsClient : IGoSmsClient
 
             if (error != null && error.ErrorCode > 0)
             {
-                throw GoSmsApiException.FromApiError(error);
+                int? retryAfter = ExtractRetryAfter(headers);
+                throw GoSmsApiException.FromApiError(error, retryAfter);
             }
 
             response.EnsureSuccessStatusCode();
@@ -172,9 +184,20 @@ public class GoSmsClient : IGoSmsClient
         var errorCheck = JsonSerializer.Deserialize<GoSmsApiError>(content, JsonOptions);
         if (errorCheck != null && errorCheck.ErrorCode > 0)
         {
-            throw GoSmsApiException.FromApiError(errorCheck);
+            int? retryAfter = ExtractRetryAfter(headers);
+            throw GoSmsApiException.FromApiError(errorCheck, retryAfter);
         }
 
-        return result;
+        return (result, headers);
+    }
+
+    private static int? ExtractRetryAfter(System.Net.Http.Headers.HttpResponseHeaders headers)
+    {
+        if (headers.TryGetValues("Retry-After", out var values))
+        {
+            if (int.TryParse(values.FirstOrDefault(), out var seconds))
+                return seconds;
+        }
+        return null;
     }
 }

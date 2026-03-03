@@ -1,3 +1,15 @@
+## [Unreleased]
+
+### Added
+
+- **OTP Rate Limit Headers**: `SendOtpAsync()` and `VerifyOtpAsync()` now return rate limit information via the `RateLimitInfo` property on `OtpSendResponse` and `OtpVerifyResponse`.
+- **`RateLimitInfo` class** (`GoSMSCore.Models.RateLimitInfo`): New model with `Limit`, `Remaining`, and `RetryAfter` properties, extracted from `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `Retry-After` response headers.
+- **`RetryAfter` on `GoSmsApiException`**: When the API returns error codes `109` (TooManyRequests) or `110` (AccountLocked), `RetryAfter` contains the lockout duration in seconds.
+
+### Changed
+
+- Internal `PostAsync<T>()` method now extracts rate limit headers from HTTP responses (no public API impact for non-OTP methods).
+
 ## [6.1.1](https://github.com/gosms-ge/gosms-nuget/compare/v6.1.0...v6.1.1) (2026-02-22)
 
 ### Other Changes

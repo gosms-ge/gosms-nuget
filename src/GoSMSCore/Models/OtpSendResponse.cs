@@ -27,4 +27,7 @@ public class OtpSendResponse
 
     [JsonPropertyName("smsCharacters")]
     public int SmsCharacters { get; set; }
+
+    [System.Text.Json.Serialization.JsonIgnore]
+    public RateLimitInfo? RateLimitInfo { get; set; }
 }

@@ -114,6 +114,13 @@ var adResult = await sms.SendBulkAsync(phones, "Special offer!", noSmsNumber: "9
 var otpResult = await sms.SendOtpAsync("995555555555");
 Console.WriteLine($"Hash: {otpResult.Hash}"); // Save this for verification
 Console.WriteLine($"Balance: {otpResult.Balance}");
+
+// Rate limit info
+if (otpResult.RateLimitInfo != null)
+{
+    Console.WriteLine($"Remaining: {otpResult.RateLimitInfo.Remaining}");
+    Console.WriteLine($"Limit: {otpResult.RateLimitInfo.Limit}");
+}
 ```
 
 ### Verify OTP
@@ -124,7 +131,16 @@ if (verifyResult.Verify)
     Console.WriteLine("OTP verified successfully");
 else
     Console.WriteLine("Invalid OTP code");
+
+// Rate limit info
+if (verifyResult.RateLimitInfo != null)
+{
+    Console.WriteLine($"Remaining: {verifyResult.RateLimitInfo.Remaining}");
+}
 ```
+
+> **Note:** A wrong OTP code returns `Verify = false` without throwing an exception.
+> Exceptions are thrown only for expired OTPs, already-used OTPs, and locked accounts.
 
 ### Check Message Status
 
@@ -173,6 +189,25 @@ catch (GoSmsApiException ex)
 catch (HttpRequestException ex)
 {
     Console.WriteLine($"Network error: {ex.Message}");
+}
+```
+
+### Rate Limit Errors
+
+When OTP rate limits are exceeded, the exception includes `RetryAfter` (seconds until lockout expires):
+
+```csharp
+try
+{
+    var result = await sms.SendOtpAsync("995555555555");
+}
+catch (GoSmsApiException ex) when (ex.ErrorCode == GoSmsErrorCode.TooManyRequests)
+{
+    Console.WriteLine($"Too many attempts. Retry after {ex.RetryAfter}s");
+}
+catch (GoSmsApiException ex) when (ex.ErrorCode == GoSmsErrorCode.AccountLocked)
+{
+    Console.WriteLine($"Account locked. Retry after {ex.RetryAfter}s");
 }
 ```
 
@@ -250,6 +285,7 @@ All methods accept an optional `CancellationToken` parameter.
 | `Balance` | `int` | Remaining SMS credits |
 | `To` | `string?` | Recipient phone number |
 | `SendAt` | `string?` | Send timestamp (ISO 8601) |
+| `RateLimitInfo` | `RateLimitInfo?` | Rate limit info (OTP endpoints only) |
 
 #### `OtpVerifyResponse`
 
@@ -257,6 +293,15 @@ All methods accept an optional `CancellationToken` parameter.
 |----------|------|-------------|
 | `Success` | `bool` | Whether the request succeeded |
 | `Verify` | `bool` | Whether the OTP code is valid |
+| `RateLimitInfo` | `RateLimitInfo?` | Rate limit info (OTP endpoints only) |
+
+#### `RateLimitInfo`
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `Limit` | `int?` | Maximum requests allowed in the window |
+| `Remaining` | `int?` | Requests remaining in the window |
+| `RetryAfter` | `int?` | Seconds until lockout expires |
 
 #### `CheckStatusResponse`
 

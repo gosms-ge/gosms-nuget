@@ -9,4 +9,7 @@ public class OtpVerifyResponse
 
     [JsonPropertyName("verify")]
     public bool Verify { get; set; }
+
+    [System.Text.Json.Serialization.JsonIgnore]
+    public RateLimitInfo? RateLimitInfo { get; set; }
 }
