@@ -1,3 +1,13 @@
+## [6.2.0](https://github.com/gosms-ge/gosms-nuget/compare/v6.1.1...v6.2.0) (2026-03-03)
+
+### Features
+
+* add OTP rate limit handling and improve error response handling ([7a067fe](https://github.com/gosms-ge/gosms-nuget/commit/7a067fe40f2cfc0246e8b838f8e77a1fb56647f2))
+
+### Other Changes
+
+* correct repository URL in project file ([98662d5](https://github.com/gosms-ge/gosms-nuget/commit/98662d5c98f1cf054f05f42d7fab4dc8dbe818bd))
+
 ## [Unreleased]
 
 ### Added
